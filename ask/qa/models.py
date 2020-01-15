@@ -4,7 +4,14 @@ from django.contrib.auth.models import User
 from django.db import models
 
 # Create your models here.
+class QuestionManager(models.Manager):
+  def new(self):
+    return self.order_by('-added_at')
+  def popular(self):
+    return self.order_by('-rating')
+
 class Question(models.Model):
+    objects = QuestionManager()
     title = models.CharField(max_length=128) #- заголовок вопроса
     text = models.TextField() #- полный текст вопроса
     added_at = models.DateField(auto_now_add=True) #- дата добавления вопроса
