@@ -3,5 +3,5 @@ from qa import views
 
 urlpatterns = [
     url(r'^(\d+)/', views.test, name='test'),
-    url(r'', views.test, name='test1'),
+    url(r'.*', views.test, name='test1'),
 ]
