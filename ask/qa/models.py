@@ -2,6 +2,7 @@
 from __future__ import unicode_literals
 from django.contrib.auth.models import User
 from django.db import models
+#from django.core.paginator import Paginator
 
 # Create your models here.
 class QuestionManager(models.Manager):
@@ -26,9 +27,3 @@ class Answer(models.Model): # ответ
     added_at = models.DateField(auto_now_add=True) #- дата добавления ответа
     question = models.ForeignKey(Question, on_delete=models.DO_NOTHING)#- вопрос, к которому относится ответ
     author = models.ForeignKey(User, on_delete=models.DO_NOTHING)#- автор ответа
-
-class QuestionManager(models.Manager):
-  def new(self):
-    return self.order_by('-added_at')
-  def popular(self):
-    return self.order_by('-rating')

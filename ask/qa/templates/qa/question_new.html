@@ -1,0 +1,17 @@
+<h1>New questions</h1>
+<ul>
+{% for question in questions%}
+    <li>{{ question.title }} <a href= "/question/{{ question.id }}/"></a> </li>
+{% endfor %}
+</ul>
+<nav><ul class=paginator>
+{% for p in paginator.page_range %}
+    {% if p.number == page.number %}
+    <li class = "active">
+    {% else %}
+    <li>
+    {% endif %}
+	<a href="{{ paginator.base_url }}{{ p }}" > {{ p }} </a>
+    </li>
+{% endfor %}
+</ul></nav>
