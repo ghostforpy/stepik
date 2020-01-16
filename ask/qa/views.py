@@ -11,7 +11,8 @@ from django.core.paginator import Paginator
 def question_details(request, id):
     question = get_object_or_404(Question, id=id)
     try:
-	answers = Answer.objects.get(question_id=id)
+	answers = Answer.objects.filter(question_id__exact=id)
+#	answers = Answer.objects.get(question_id=id)
     except Answer.DoesNotExist:
 	answers = None
     return render(request, 'qa/question_details.html', {

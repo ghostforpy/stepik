@@ -1,0 +1,13 @@
+<h1>{{ question.title }}</h1>
+<p>{{ question.text }}</p>
+<h2>Answers:</h2>
+
+{% if answers %}
+    <ul>
+    
+	<li>{{ answers.text }}</li> 
+    
+    </ul>
+{% else %}
+    <p>No answers yet.</p>
+{% endif %}
