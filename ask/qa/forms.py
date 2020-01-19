@@ -12,4 +12,4 @@ class AskForm(forms.Form):
 
 class AnswerForm(forms.Form):
     text = forms.CharField(widget=forms.Textarea)
-    #question = forms.CharField(widget=forms.Textarea)
+    question = forms.CharField(widget=forms.Textarea)

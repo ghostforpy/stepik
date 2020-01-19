@@ -31,6 +31,8 @@ def question_details(request, id):
 	    ans = Answer()
 	    ans.save_data(form, 1, id)
 	    return HttpResponseRedirect(reverse(question_details, args=(id,)))
+	else:
+	    return HttpResponse('OK')
 
 
 
