@@ -1,0 +1,10 @@
+<h1>Plese, type your question</h1>
+
+<form action="{{ url }}" method="post">
+{% csrf_token %}
+
+{% for field in form %}
+<div>{{field.label}} : {{field}}</div>
+{% endfor %}
+<input type="submit" value="Send question" />
+</form>

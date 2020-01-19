@@ -11,3 +11,11 @@
 {% else %}
     <p>No answers yet.</p>
 {% endif %}
+<h2>Add your answer</h2>
+<form action="{{ url }}" method="post">
+{% csrf_token %}
+{% for field in form %}
+<div>{{field.label}} : {{field}}</div>
+{% endfor %}
+<input type="submit" value="Send answer" />
+</form>
