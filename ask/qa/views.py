@@ -12,25 +12,25 @@ from qa.forms import AskForm, AnswerForm
 #@require_GET
 def question_details(request, id):
     if request.method == 'GET':
-	question = get_object_or_404(Question, id=id)
-	form = AnswerForm()
-	url_answer = reverse(question_details, args=(id,))
-	try:
-	    answers = Answer.objects.filter(question_id__exact=id)
-	except Answer.DoesNotExist:
-	    answers = None
-	return render(request, 'qa/question_details.html', {
-	    'question' : question,
-	    'answers' : answers,
-	    'form' : form,
-	    'url' : url_answer
-	})
+        question = get_object_or_404(Question, id=id)
+        form = AnswerForm()
+        url_answer = reverse(question_details, args=(id,))
+        try:
+            answers = Answer.objects.filter(question_id__exact=id)
+        except Answer.DoesNotExist:
+            answers = None
+        return render(request, 'qa/question_details.html', {
+            'question' : question,
+            'answers' : answers,
+            'form' : form,
+            'url' : url_answer
+        })
     if request.method == 'POST':
-	form = AnswerForm(request.POST)
-	if form.is_valid():
-	    ans = Answer()
-	    ans.save_data(form, 1, id)
-	    return HttpResponseRedirect(reverse(question_details, args=(id,)))
+        form = AnswerForm(request.POST)
+        if form.is_valid():
+            ans = Answer()
+            ans.save_data(form, 1, id)
+            return HttpResponseRedirect(reverse(question_details, args=(id,)))
 
 
 
@@ -69,18 +69,18 @@ def question_new(request, *args, **kwargs):
 
 def ask(request, *args, **kwargs):
     if request.method == 'GET':
-	form = AskForm()
-	url_ask=reverse(ask)
-	return render(request, 'qa/ask_question.html', {
-	'form' : form,
-	'url' : url_ask,
-	})
+        form = AskForm()
+        url_ask=reverse(ask)
+        return render(request, 'qa/ask_question.html', {
+        'form' : form,
+        'url' : url_ask,
+        })
     if request.method == 'POST':
-	form = AskForm(request.POST)
-	if form.is_valid():
-	    que = Question()
-	    save_id = que.save_data(form, 1)
-	    return HttpResponseRedirect(reverse(question_details, args=(save_id,)))
+        form = AskForm(request.POST)
+        if form.is_valid():
+            que = Question()
+            save_id = que.save_data(form, 1)
+            return HttpResponseRedirect(reverse(question_details, args=(save_id,)))
 
 
 

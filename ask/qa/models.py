@@ -22,11 +22,11 @@ class Question(models.Model):
     likes = models.ManyToManyField(User, related_name='question_like_user') #- список пользователей, поставивших "лайк"
     
     def save_data(self, form, aut_id):
-	self.title = form.cleaned_data['title']
-	self.text = form.cleaned_data['title']
-	self.author_id = aut_id
-	self.save()
-	return self.id
+        self.title = form.cleaned_data['title']
+        self.text = form.cleaned_data['title']
+        self.author_id = aut_id
+        self.save()
+        return self.id
 
 
 class Answer(models.Model): # ответ
@@ -36,8 +36,8 @@ class Answer(models.Model): # ответ
     author = models.ForeignKey(User, on_delete=models.DO_NOTHING)#- автор ответа
     
     def save_data(self, form, aut, que_id):
-	self.text = form.cleaned_data['text']
-	self.author_id = aut
-	self.question_id = que_id
-	self.save()
-	return self.id
+        self.text = form.cleaned_data['text']
+        self.author_id = aut
+        self.question_id = que_id
+        self.save()
+        return self.id
