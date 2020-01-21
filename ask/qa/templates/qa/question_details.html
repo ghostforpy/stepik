@@ -1,11 +1,18 @@
+{% if user.is_authenticated %}
+    <p>Welcome, {{ user.username }}. Thanks for logging in.<a href="/logout">Logout.</a></p>
+{% else %}
+    <p>Welcome, new user. Please <a href= "/login/">log in.</a></p>
+{% endif %}
+
 <h1>{{ question.title }}</h1>
+</p>{{ question.author }}:</p>
 <p>{{ question.text }}</p>
 <h2>Answers:</h2>
 
 {% if answers %}
     <ul>
     {% for answer in answers %}
-	<li>{{ answer.text }}</li> 
+	<li>{{ answer.author }} : {{ answer.text }}</li> 
     {% endfor %}
     </ul>
 {% else %}

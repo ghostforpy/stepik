@@ -20,8 +20,9 @@ from qa import views
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^', include('qa.urls')),
-    url(r'^login/', include('qa.urls')),
-    url(r'^signup/', include('qa.urls')),
+    url(r'^login/', views.qa_login, name='qa_login'),
+    url(r'^logout/', views.logout_view, name='logout'),
+    url(r'^signup/', views.signup, name='signup'),
     url(r'^question/', include('qa.urls')),
     #url(r'^question/(\d+)/', views.test),
     url(r'ask/', views.ask, name='ask'),

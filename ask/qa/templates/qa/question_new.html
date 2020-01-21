@@ -1,3 +1,9 @@
+{% if user.is_authenticated %}
+    <p>Welcome, {{ user.username }}. Thanks for logging in.<a href="/logout">Logout.</a></p>
+{% else %}
+    <p>Welcome, new user. Please <a href= "/login/">log in.</a></p>
+{% endif %}
+
 <h1>New questions</h1>
 <ul>
 {% for question in questions%}
