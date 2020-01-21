@@ -10,7 +10,7 @@ from django.core.urlresolvers import reverse
 from django.contrib.auth.models import User
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from django.contrib.auth import authenticate, login, logout
-from qa.forms import AskForm, AnswerForm
+from qa.forms import AskForm, AnswerForm, MyUserCreationForm
 
 def question_details(request, id):
     if request.method == 'GET':
@@ -95,16 +95,16 @@ def ask(request, *args, **kwargs):
 
 def signup(request, *args, **kwargs):
     if request.method == 'GET':
-	form = UserCreationForm()
+	form = MyUserCreationForm()
 	return render(request, 'qa/signup.html', {
         'form' : form,
         })
     if request.method == 'POST':
-        form = UserCreationForm(request.POST)
+        form = MyUserCreationForm(request.POST)
         if form.is_valid():
-	    user = User.objects.create_user(form.cleaned_data['username'], password=form.cleaned_data['password1'])
+	    user = User.objects.create_user(form.cleaned_data['username'], email=form.cleaned_data['email'], password=form.cleaned_data['password'])
 	    user.save()
-	    user = authenticate(username=form.cleaned_data['username'], password=form.cleaned_data['password1'])
+	    user = authenticate(username=form.cleaned_data['username'], password=form.cleaned_data['password'])
 	    login(request, user)
             return HttpResponseRedirect(reverse(question_new,))
 	else:

@@ -1,5 +1,5 @@
 from django import forms
-
+from django.contrib.auth.forms import UserCreationForm
 
 class AskForm(forms.Form):
     title = forms.CharField(max_length=100)
@@ -16,3 +16,8 @@ class AnswerForm(forms.Form):
 #    question = forms.CharField(widget=forms.Textarea)
     question = forms.IntegerField()
     author = forms.CharField()
+
+class MyUserCreationForm(forms.Form):
+    username = forms.CharField()
+    email = forms.EmailField()
+    password = forms.CharField(widget=forms.PasswordInput)
